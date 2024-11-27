@@ -3,3 +3,5 @@ test
 *.out
 *.txt
 *.pl
+*.sh
+example_files
