@@ -38,5 +38,6 @@ int return_error(char *buffer);
 int verif_size(char *buffer);
 int verif_char(char *buffer);
 int return_read_error(char *buffer, int size);
+int verif_line_nb(char *buffer);
 
 #endif /* SETTING_UP_H */

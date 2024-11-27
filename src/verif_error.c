@@ -154,6 +154,8 @@ int verif_error(int ac, char **av)
     if (handle_error(av) == 84)
         return 84;
     buffer = read_string(av);
+    if (verif_line_nb(buffer) == 84)
+        return 84;
     if (return_error(buffer) == 84)
         return 84;
     free(buffer);
