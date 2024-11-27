@@ -47,9 +47,7 @@ static int handle_error(char **av)
     int fr;
     char *buffer = malloc(size + 1);
 
-    if (!buffer)
-        return 84;
-    if (size == -1)
+    if (return_read_error(buffer, size) == 84)
         return 84;
     fd = fs_open_file(av[1]);
     if (fd == -1) {
@@ -71,9 +69,8 @@ static char *read_string(char **av)
     int fd;
     char *buffer = malloc(size + 1);
 
-    if (!buffer)
-        return NULL;
-    if (size == -1 || handle_error(av) != 0) {
+    if (size == -1 || handle_error(av) != 0 || !buffer) {
+        free(buffer);
         return NULL;
     }
     fd = open(filepath, O_RDONLY);
@@ -89,7 +86,7 @@ static char *read_string(char **av)
 
 static int len_nbr(int nb)
 {
-    int len_nb;
+    int len_nb = 0;
 
     while (nb >= 1) {
         nb /= 10;
@@ -136,9 +133,10 @@ int verif_size(char *buffer)
 
 int verif_char(char *buffer)
 {
-    int len_nb = len_nbr(my_getnbr(buffer)) + 1;
+    int nb = my_getnbr(buffer);
+    int len_nb = len_nbr(nb) + 1;
 
-    for (int i = len_nb; buffer[i]; i++) {
+    for (int i = len_nb; buffer[i] != '\0'; i++) {
         if (buffer[i] != '.' && buffer[i] != 'o' && buffer[i] != '\n')
             return 84;
     }
@@ -154,7 +152,7 @@ int verif_error(int ac, char **av)
     if (handle_error(av) == 84)
         return 84;
     buffer = read_string(av);
-    if (return_woula(buffer) == 84)
+    if (return_error(buffer) == 84)
         return 84;
     free(buffer);
     return 0;

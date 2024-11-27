@@ -7,6 +7,18 @@
 
 #include "../include/setting_up.h"
 
+int return_read_error(char *buffer, int size)
+{
+    if (!buffer) {
+        free(buffer);
+        return 84;
+    }
+    if (size == -1) {
+        free(buffer);
+        return 84;
+    }
+}
+
 int return_error(char *buffer)
 {
     if (!buffer) {

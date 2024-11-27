@@ -116,6 +116,9 @@ int setting_up_algo(stat_buff_t *buffer)
     cast_int(buffer);
     find_square(buffer);
     update_buffer(buffer);
+    for (int i = 0; i < buffer->len_line + 1; i++)
+        free(buffer->matrix[i]);
+    free(buffer->matrix);
 }
 
 int setting_up(int ac, char **av)
@@ -131,11 +134,13 @@ int setting_up(int ac, char **av)
         return 84;
     }
     buffer = read_to_string_array(av);
-    if (!buffer->buffer)
-        return 84;
     setting_up_algo(buffer);
-    for (int i = 0; buffer->buffer[i] != NULL; i++)
+    for (int i = 0; buffer->buffer[i]; i++) {
         my_printf("%s\n", buffer->buffer[i]);
+    }
+    for (int i = 0; i < buffer->len_line; i++)
+        free(buffer->buffer[i]);
+    free(buffer->buffer);
     free(buffer);
     return 0;
 }

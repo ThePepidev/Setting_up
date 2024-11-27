@@ -10,7 +10,7 @@ SRC	= 	src/setting_up.c 						\
 		src/read_to_string_array.c 				\
 		src/verif_error.c 						\
 		src/generate_map.c 						\
-		src/return_woula.c
+		src/return_error.c
 
 OBJ	=	$(SRC:.c=.o)
 

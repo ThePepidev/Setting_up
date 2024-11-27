@@ -34,8 +34,9 @@ stat_buff_t *read_to_string_array(char **av);
 int verif_error(int ac, char **av);
 int handle_generating(int ac, char **av, stat_buff_t *buffer);
 int setting_up_algo(stat_buff_t *buffer);
-int return_woula(char *buffer);
+int return_error(char *buffer);
 int verif_size(char *buffer);
 int verif_char(char *buffer);
+int return_read_error(char *buffer, int size);
 
 #endif /* SETTING_UP_H */
