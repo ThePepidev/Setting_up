@@ -136,7 +136,7 @@ int setting_up(int ac, char **av)
     setting_up_algo(buffer);
     for (int i = 0; buffer->buffer[i]; i++) {
         write(1, buffer->buffer[i], my_strlen(buffer->buffer[i]));
-        my_putchar('\n');
+        write(1, "\n", 1);
     }
     for (int i = 0; i < buffer->len_line; i++)
         free(buffer->buffer[i]);

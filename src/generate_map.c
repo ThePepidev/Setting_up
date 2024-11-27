@@ -99,8 +99,13 @@ int handle_generating(int ac, char **av, stat_buff_t *buffer)
         buffer->len_column, buffer->len_line) == 84)
         return 84;
     setting_up_algo(buffer);
-    for (int i = 0; buffer->buffer[i] != NULL; i++)
-        my_printf("%s\n", buffer->buffer[i]);
+    for (int i = 0; buffer->buffer[i]; i++) {
+        write(1, buffer->buffer[i], my_strlen(buffer->buffer[i]));
+        write(1, "\n", 1);
+    }
+    for (int i = 0; i < buffer->len_line; i++)
+        free(buffer->buffer[i]);
+    free(buffer->buffer);
     free(buffer);
     return 0;
 }
