@@ -89,16 +89,16 @@ static int put_array(char *buffer, char **buff, int *j, int i)
     return k;
 }
 
-static void end_string(char buff, int *j)
+static void end_string(char **buff, int i, int k, int *j)
 {
-    buff = '\0';
+    buff[i][k] = '\0';
     (*j)++;
 }
 
-static void end_array(char **buff, int len_line, stat_buff_t *buffer_s)
+static void end_array(char **buff, stat_buff_t *buffer_s, char *buffer)
 {
-    buff[len_line] = NULL;
     buffer_s->buffer = buff;
+    free(buffer);
 }
 
 stat_buff_t *read_to_string_array(char **av)
@@ -118,9 +118,9 @@ stat_buff_t *read_to_string_array(char **av)
         if (!buff[i])
             return NULL;
         k = put_array(buffer, buff, &j, i);
-        end_string(buff[i][k], &j);
+        end_string(buff, i, k, &j);
     }
-    end_array(buff, len_line, buffer_s);
-    free(buffer);
+    buff[len_line] = NULL;
+    end_array(buff, buffer_s, buffer);
     return buffer_s;
 }
