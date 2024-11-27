@@ -19,7 +19,15 @@ typedef struct stat_buff_s {
     int len_line;
     int len_column;
     char **buffer;
+    /// @brief
+    int **matrix;
 } stat_buff_t;
+
+typedef struct max_s {
+    int max;
+    int y;
+    int x;
+} max_t;
 
 int setting_up(int ac, char **av);
 stat_buff_t *read_to_string_array(char **av);
