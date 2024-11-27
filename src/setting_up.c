@@ -130,13 +130,13 @@ int setting_up(int ac, char **av)
             return 84;
         return 0;
     }
-    if (verif_error(ac, av) == 84) {
+    if (verif_error(ac, av) == 84)
         return 84;
-    }
     buffer = read_to_string_array(av);
     setting_up_algo(buffer);
     for (int i = 0; buffer->buffer[i]; i++) {
-        my_printf("%s\n", buffer->buffer[i]);
+        write(1, buffer->buffer[i], my_strlen(buffer->buffer[i]));
+        my_putchar('\n');
     }
     for (int i = 0; i < buffer->len_line; i++)
         free(buffer->buffer[i]);
