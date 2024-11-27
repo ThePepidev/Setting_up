@@ -6,4 +6,4 @@ test
 *.pl
 *.sh
 example_files
-main.py
+*.py
