@@ -1,4 +1,4 @@
-## README for the "Setting Up" Project
+## Setting Up Project
 # Project Overview
 
 Setting Up is a C programming project focused on applying dynamic programming to solve a classic problem: finding the largest square within a grid while avoiding obstacles. This program allows you to either read a grid from a file or generate one dynamically based on given parameters.
