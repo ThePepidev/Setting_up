@@ -8,7 +8,8 @@
 SRC	= 	src/setting_up.c 						\
 		src/main.c 								\
 		src/read_to_string_array.c 				\
-		src/verif_error.c
+		src/verif_error.c 						\
+		src/generate_map.c
 
 OBJ	=	$(SRC:.c=.o)
 

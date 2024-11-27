@@ -32,5 +32,7 @@ typedef struct max_s {
 int setting_up(int ac, char **av);
 stat_buff_t *read_to_string_array(char **av);
 int verif_error(int ac, char **av);
+int handle_generating(int ac, char **av, stat_buff_t *buffer);
+int setting_up_algo(stat_buff_t *buffer);
 
 #endif /* SETTING_UP_H */

@@ -105,7 +105,7 @@ static void update_buffer(stat_buff_t *buffer)
     free(max);
 }
 
-static int setting_up_algo(stat_buff_t *buffer)
+int setting_up_algo(stat_buff_t *buffer)
 {
     cast_int(buffer);
     find_square(buffer);
@@ -116,6 +116,11 @@ int setting_up(int ac, char **av)
 {
     stat_buff_t *buffer;
 
+    if (ac >= 3) {
+        if (handle_generating(ac, av, buffer) == 84)
+            return 84;
+        return 0;
+    }
     if (verif_error(ac, av) == 84) {
         return 84;
     }
