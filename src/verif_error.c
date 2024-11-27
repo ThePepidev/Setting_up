@@ -13,10 +13,8 @@ static long get_size_file(const char *filename)
 {
     struct stat st;
 
-    if (stat(filename, &st) == 0) {
+    if (stat(filename, &st) == 0)
         return st.st_size;
-    }
-    my_putstr("Could not get file size\n");
     return -1;
 }
 
@@ -24,18 +22,12 @@ static int fs_understand_return_of_read(int fd, char *buffer, int size)
 {
     int rd = read(fd, buffer, size);
 
-    if (rd == -1) {
-        my_putstr("read failed\n");
+    if (rd == -1)
         return 84;
-    }
-    if (rd == 0) {
-        my_putstr("read has nothing more to read\n");
+    if (rd == 0)
         return 84;
-    }
-    if (rd < size) {
-        my_putstr("read didn’t complete the entire buffer\n");
+    if (rd < size)
         return 84;
-    }
     return 0;
 }
 
@@ -43,11 +35,8 @@ static int fs_open_file(char const *filepath)
 {
     int fo = open(filepath, O_RDONLY);
 
-    if (fo > 0) {
+    if (fo > 0)
         return fo;
-    } else {
-        my_putstr("FAILURE\n");
-    }
     return -1;
 }
 
@@ -87,7 +76,6 @@ static char *read_string(char **av)
     fd = open(filepath, O_RDONLY);
     if (fd == -1) {
         free(buffer);
-        my_putstr("File open failed\n");
         return NULL;
     }
     read(fd, buffer, size);

@@ -13,10 +13,8 @@ static long get_size_file(const char *filename)
 {
     struct stat st;
 
-    if (stat(filename, &st) == 0) {
+    if (stat(filename, &st) == 0)
         return st.st_size;
-    }
-    my_putstr("Could not get file size\n");
     return -1;
 }
 
@@ -30,7 +28,6 @@ static char *read_string(char **av)
     fd = open(filepath, O_RDONLY);
     if (fd == -1) {
         free(buffer);
-        my_putstr("File open failed\n");
         return NULL;
     }
     read(fd, buffer, size);

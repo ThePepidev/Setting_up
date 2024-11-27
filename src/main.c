@@ -11,11 +11,8 @@
 
 int main(int ac, char **av)
 {
-    if (ac < 2) {
-        my_putstr("too few arguments");
+    if (ac < 2)
         return 84;
-    }
-    if (setting_up(ac, av) == 84) {
+    if (setting_up(ac, av) == 84)
         return 84;
-    }
 }
