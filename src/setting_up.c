@@ -57,7 +57,7 @@ static void find_square_loop(int i, stat_buff_t *buffer, int **buff)
             buff[i][j] = find_min(buffer->matrix, i, j);
         else
             buff[i][j] = 0;
-        }
+    }
 }
 
 static void find_square(stat_buff_t *buffer)
