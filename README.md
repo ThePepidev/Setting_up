@@ -1,9 +1,9 @@
-## Setting Up Project
-# Project Overview
+# Setting Up Project
+## Project Overview
 
 Setting Up is a C programming project focused on applying dynamic programming to solve a classic problem: finding the largest square within a grid while avoiding obstacles. This program allows you to either read a grid from a file or generate one dynamically based on given parameters.
 
-# Features
+## Features
 
     **Input Options:**
         Read a grid from a file where:
@@ -19,13 +19,13 @@ Setting Up is a C programming project focused on applying dynamic programming to
         Print the processed grid with the largest square marked.
         Handle ties by selecting the square positioned higher and to the left.
 
-# Authorized Functions:
+## Authorized Functions:
 
     open, read, write, close
     malloc, free
     stat
 
-# Usage
+## Usage
 **Reading a File:**
 
 ./setting_up <file_name>
@@ -37,7 +37,7 @@ The file must adhere to the following rules:
     All lines (excluding the first) must have the same length.
     Each line is terminated with a newline character.
 
-# Example:
+## Example:
 
 Input File (example_file):
 
@@ -52,7 +52,7 @@ Input File (example_file):
       ......o..............o.....
       ..o.......o................
 
-Execution:
+**Execution:**
 
 ./setting_up example_file
 
@@ -75,7 +75,7 @@ Output:
     <size> specifies the grid's width and height.
     <pattern> defines the repeating sequence for each line of the grid.
 
-# Example:
+## Example:
 
 ./setting_up 6 "..o.."
 
