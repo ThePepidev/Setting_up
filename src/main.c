@@ -11,7 +11,7 @@
 
 int main(int ac, char **av)
 {
-    if (ac < 2)
+    if (ac < 2 || ac > 3)
         return 84;
     if (setting_up(ac, av) == 84)
         return 84;

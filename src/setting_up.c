@@ -125,7 +125,7 @@ int setting_up(int ac, char **av)
 {
     stat_buff_t *buffer;
 
-    if (ac >= 3) {
+    if (ac == 3) {
         if (handle_generating(ac, av, buffer) == 84)
             return 84;
         return 0;

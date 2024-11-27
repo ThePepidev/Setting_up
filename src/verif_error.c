@@ -136,7 +136,7 @@ int verif_char(char *buffer)
     int nb = my_getnbr(buffer);
     int len_nb = len_nbr(nb) + 1;
 
-    if (len_nb == 0)
+    if (!nb || len_nb == 0)
         return 84;
     for (int i = len_nb; buffer[i] != '\0'; i++) {
         if (buffer[i] != '.' && buffer[i] != 'o' && buffer[i] != '\n')
