@@ -14,12 +14,5 @@
 
 int flag_m(char const *format, int *i, va_list ac)
 {
-    char *error_message = strerror(errno);
-
-    if (error_message == NULL) {
-        write(1, "success", 7);
-        return 0;
-    }
-    write(2, error_message, my_strlen(error_message));
     return 0;
 }
