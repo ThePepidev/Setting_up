@@ -42,15 +42,16 @@ static int fs_open_file(char const *filepath)
 
 static int handle_error(char **av)
 {
-    const char *filepath = av[1];
-    long size = get_size_file(filepath);
+    long size = get_size_file(av[1]);
     int fd;
     int fr;
     char *buffer = malloc(size + 1);
 
+    if (!buffer)
+        return 84;
     if (size == -1)
         return 84;
-    fd = fs_open_file(filepath);
+    fd = fs_open_file(av[1]);
     if (fd == -1) {
         free(buffer);
         return 84;
@@ -70,6 +71,8 @@ static char *read_string(char **av)
     int fd;
     char *buffer = malloc(size + 1);
 
+    if (!buffer)
+        return NULL;
     if (size == -1 || handle_error(av) != 0) {
         return NULL;
     }
@@ -107,13 +110,15 @@ static int strlen_colone(char *buffer)
     return j;
 }
 
-static int verif_size(char *buffer)
+int verif_size(char *buffer)
 {
     int j = len_nbr(my_getnbr(buffer)) + 1;
     int k = 0;
     int len_colone = strlen_colone(buffer);
     char *next = malloc(len_colone + 1);
 
+    if (!next)
+        return 84;
     for (; buffer[j] != '\0';) {
         k = 0;
         for (; buffer[j] != '\n' && buffer[j] != '\0'; j++) {
@@ -125,10 +130,11 @@ static int verif_size(char *buffer)
         if (my_strlen(next) != len_colone)
             return 84;
     }
+    free(next);
     return 0;
 }
 
-static int verif_char(char *buffer)
+int verif_char(char *buffer)
 {
     int len_nb = len_nbr(my_getnbr(buffer)) + 1;
 
@@ -148,11 +154,8 @@ int verif_error(int ac, char **av)
     if (handle_error(av) == 84)
         return 84;
     buffer = read_string(av);
-    if (!buffer)
+    if (return_woula(buffer) == 84)
         return 84;
-    if (verif_char(buffer) == 84)
-        return 84;
-    if (verif_size(buffer) == 84)
-        return 84;
+    free(buffer);
     return 0;
 }

@@ -20,12 +20,16 @@ static void cast_int_suite(int i, stat_buff_t *buffer, int **buff)
     }
 }
 
-static void cast_int(stat_buff_t *buffer)
+static int cast_int(stat_buff_t *buffer)
 {
     int **buff = malloc(sizeof(int *) * (buffer->len_line + 1));
 
+    if (!buff)
+        return 84;
     for (int i = 0; i < buffer->len_line + 1; i++) {
         buff[i] = malloc(sizeof(int) * (buffer->len_column + 1));
+        if (!buff[i])
+            return 84;
         for (int j = 0; j < buffer->len_column + 1; j++) {
             buff[i][j] = 0;
         }
@@ -84,6 +88,8 @@ static max_t *find_max(int **matrix, stat_buff_t *buffer)
 {
     max_t *max = malloc(sizeof(max_t));
 
+    if (!max)
+        return NULL;
     max->max = 0;
     for (int i = 0; i < buffer->len_line + 1; i++) {
         find_max_loop(i, buffer, max, matrix);

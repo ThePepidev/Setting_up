@@ -25,6 +25,8 @@ static char *read_string(char **av)
     int fd;
     char *buffer = malloc(size + 1);
 
+    if (!buffer)
+        return NULL;
     fd = open(filepath, O_RDONLY);
     if (fd == -1) {
         free(buffer);
@@ -87,6 +89,18 @@ static int put_array(char *buffer, char **buff, int *j, int i)
     return k;
 }
 
+static void end_string(char buff, int *j)
+{
+    buff = '\0';
+    (*j)++;
+}
+
+static void end_array(char **buff, int len_line, stat_buff_t *buffer_s)
+{
+    buff[len_line] = NULL;
+    buffer_s->buffer = buff;
+}
+
 stat_buff_t *read_to_string_array(char **av)
 {
     char *buffer = read_string(av);
@@ -97,14 +111,16 @@ stat_buff_t *read_to_string_array(char **av)
         len_line, strlen_colone(buffer));
     int k;
 
+    if (!buffer)
+        return NULL;
     for (int i = 0; i < len_line; i++) {
         buff[i] = malloc(sizeof(char) * (strlen_colone(buffer) + 1));
+        if (!buff[i])
+            return NULL;
         k = put_array(buffer, buff, &j, i);
-        buff[i][k] = '\0';
-        j++;
+        end_string(buff[i][k], &j);
     }
-    buff[len_line] = NULL;
-    buffer_s->buffer = buff;
+    end_array(buff, len_line, buffer_s);
     free(buffer);
     return buffer_s;
 }
